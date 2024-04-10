@@ -1,0 +1,59 @@
+// Query existencial simple, sin subquery
+// Devuelve a las personas que trabajan para Neo4j y sus amigos
+MATCH (p:Person)-[r:IS_FRIENDS_WITH]->(friend:Person)
+WHERE exists((p)-[:WORKS_FOR]->(:Company {name: 'Neo4j'}))
+RETURN p, r, friend
+
+// El mismo query existencial, esta vez con subqueries
+MATCH (p:Person)-[r:IS_FRIENDS_WITH]->(friend:Person)
+WHERE EXISTS {
+  MATCH (p)-[:WORKS_FOR]->(:Company {name: 'Neo4j'})
+}
+RETURN p, r, friend
+
+// Otro query existencial con subqueries, esta vez un poco más complejo
+// El subquery dentro de EXISTS contiene otro subquery, esta vez con COUNT
+// Esta consulta devuelve las personas con 3 o más tecnologías con LIKE y que trabajan para cualquier empresa cuyo nombre empiece con 'Company'.
+MATCH (person:Person)-[:WORKS_FOR]->(company)
+WHERE company.name STARTS WITH "Company"
+AND EXISTS {
+  MATCH (person)-[:LIKES]->(t:Technology)
+  WHERE COUNT{(t)<-[:LIKES]-()} >= 3
+}
+RETURN person.name as person, company.name AS company;
+
+// Query que utiliza la cláusula CALL
+// Este subquery busca la unión entre las personas que les gusta Java y las personas que tienen más de un amigo
+// La cláusula CALL devuelve el resultado, el cual es utilizado en el query principal
+CALL {
+	MATCH (p:Person)-[:LIKES]->(:Technology {name: "Java"})
+	RETURN p
+
+	UNION
+
+	MATCH (p:Person)
+	WHERE COUNT{(p)-[:IS_FRIENDS_WITH]->()} > 1
+	RETURN p
+}
+RETURN p.name AS person, p.birthdate AS dob
+ORDER BY dob DESC;
+
+// Query similar al anterior, con la cláusula CALL
+// La diferencia entre estos es que, luego del subquery, todavía se realiza un poco más de manipulación del resultado
+// El resultado de la consulta principal se ordena de manera descendente
+CALL {
+	MATCH (p:Person)-[:LIKES]->(:Technology {name: "Java"})
+	RETURN p
+
+	UNION
+
+	MATCH (p:Person)
+	WHERE COUNT{(p)-[:IS_FRIENDS_WITH]->()} > 1
+	RETURN p
+}
+WITH p,
+     [(p)-[:LIKES]->(t) | t.name] AS technologies,
+     [(p)-[:IS_FRIENDS_WITH]->(f) | f.name] AS friends
+
+RETURN p.name AS person, p.birthdate AS dob, technologies, friends
+ORDER BY dob DESC;
