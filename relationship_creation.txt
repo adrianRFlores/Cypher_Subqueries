@@ -1,0 +1,131 @@
+MATCH (p:Person {name: 'Dan'}) WITH p
+MATCH (t:Technology {name: 'Integrations'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Dan'}) WITH p
+MATCH (t:Technology {name: 'Data ETL'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Dan'}) WITH p
+MATCH (t:Company {name: 'ABC'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'Ann'}) WITH p
+MATCH (t:Company {name: 'ABC'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'Ann'}) WITH p
+MATCH (t:Person {name: 'Dan'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Ann'}) WITH p
+MATCH (t:Technology {name: 'Application Development'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Sally'}) WITH p
+MATCH (t:Technology {name: 'Integrations'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Sally'}) WITH p
+MATCH (t:Company {name: 'XYZ'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'John'}) WITH p
+MATCH (t:Technology {name: 'Application Development'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'John'}) WITH p
+MATCH (t:Company {name: 'XYZ'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'John'}) WITH p
+MATCH (t:Technology {name: 'Java'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'John'}) WITH p
+MATCH (t:Person {name: 'Sally'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Person {name: 'Sally'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Person {name: 'Ann'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Person {name: 'Melissa'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Person {name: 'Mark'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Person {name: 'John'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Technology {name: 'Java'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Technology {name: 'Graphs'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Jennifer'}) WITH p
+MATCH (t:Company {name: 'Neo4j'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'Melissa'}) WITH p
+MATCH (t:Company {name: 'CompanyA'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'Melissa'}) WITH p
+MATCH (t:Technology {name: 'Graphs'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Melissa'}) WITH p
+MATCH (t:Technology {name: 'Query Languages'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Melissa'}) WITH p
+MATCH (t:Technology {name: 'Data ETL'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Mark'}) WITH p
+MATCH (t:Technology {name: 'Graphs'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Diana'}) WITH p
+MATCH (t:Technology {name: 'Graphs'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Diana'}) WITH p
+MATCH (t:Technology {name: 'Query Languages'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Diana'}) WITH p
+MATCH (t:Company {name: 'CompanyX'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'Joe'}) WITH p
+MATCH (t:Technology {name: 'Query Languages'}) 
+MERGE (p)-[:LIKES]->(t);
+
+MATCH (p:Person {name: 'Joe'}) WITH p
+MATCH (t:Person {name: 'Diana'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Joe'}) WITH p
+MATCH (t:Person {name: 'Mark'}) 
+MERGE (p)-[:IS_FRIENDS_WITH]->(t);
+
+MATCH (p:Person {name: 'Ryan'}) WITH p
+MATCH (t:Company {name: 'CompanyZ'}) 
+MERGE (p)-[:WORKS_FOR]->(t);
+
+MATCH (p:Person {name: 'Ryan'}) WITH p
+MATCH (t:Technology {name: 'Python'}) 
+MERGE (p)-[:LIKES]->(t);
